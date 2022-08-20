@@ -1,0 +1,23 @@
+{
+  "type": "module",
+  "name": "mini-apis",
+  "version": "0.1.0",
+  "description": "API server for my small web-dev projects!",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max8539/mini-apis.git"
+  },
+  "author": "max8539",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/max8539/mini-apis/issues"
+  },
+  "homepage": "https://github.com/max8539/mini-apis#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
