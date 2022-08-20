@@ -41,7 +41,6 @@ export function popularQuote () {
 // /quotemaster/like
 export function likeQuote (id) {
     const DATA = JSON.parse(fs.readFileSync(QUOTES_JSON));
-    console.log(id);
     if (id >= DATA.quotes.length) {
         throw new idError;
     }
@@ -70,6 +69,7 @@ export function newQuote (quote, name) {
         "name": name,
         "likes": 0
     });
+    fs.writeFileSync(QUOTES_JSON, JSON.stringify(DATA));
 }
 
 // /quotemaster/reset
