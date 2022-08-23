@@ -38,6 +38,15 @@ export function popularQuote () {
     return popular[index];
 }
 
+// /quotemaster/id/:id
+export function idQuote (id) {
+    const DATA = JSON.parse(fs.readFileSync(QUOTES_JSON));
+    if (id < 0 || id >= DATA.quotes.length) {
+        throw new idError;
+    }
+    return DATA.quotes[id];
+}
+
 // /quotemaster/like
 export function likeQuote (id) {
     const DATA = JSON.parse(fs.readFileSync(QUOTES_JSON));

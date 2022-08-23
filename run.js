@@ -19,6 +19,20 @@ APP.get("/quotemaster/popular", function (req, res) {
     const QUOTE = quotemaster.popularQuote();
     res.json(QUOTE);
 });
+APP.get("/quotemaster/id/:id", function (req, res) {
+    try {
+        const QUOTE = quotemaster.idQuote(req.params.id);
+        res.json(QUOTE);
+    } catch (err) {
+        if (err instanceof quotemaster.idError) {
+            res.status(400).json({
+                "errorMessage": "Invalid quote ID"
+            });
+        } else {
+            throw(err);
+        }
+    }
+});
 APP.post("/quotemaster/like", function (req, res) {
     try {
         quotemaster.likeQuote(req.body.id);
