@@ -72,13 +72,15 @@ export function newQuote (quote, name) {
         throw new nameError;
     }
     const DATA = JSON.parse(fs.readFileSync(QUOTES_JSON));
+    let newId = DATA.quotes.length;
     DATA.quotes.push({
-        "id": DATA.quotes.length,
+        "id": newId,
         "quote": quote,
         "name": name,
         "likes": 0
     });
     fs.writeFileSync(QUOTES_JSON, JSON.stringify(DATA));
+    return {id:newId}
 }
 
 // /quotemaster/reset

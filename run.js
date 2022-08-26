@@ -10,6 +10,11 @@ APP.use(express.json());
 // API initialisation functions (where required)
 quotemaster.init();
 
+// Handshaking route for frontends to check that API server is online
+APP.all("/handshake", function (req, res) {
+    res.status(200).end();
+})
+
 // quotemaster API interface
 APP.get("/quotemaster/random", function (req, res) {
     const QUOTE = quotemaster.randomQuote();
@@ -49,8 +54,8 @@ APP.post("/quotemaster/like", function (req, res) {
 });
 APP.post("/quotemaster/new", function (req, res) {
     try {
-        quotemaster.newQuote(req.body.quote, req.body.name);
-        res.status(200).end();
+        let resObj = quotemaster.newQuote(req.body.quote, req.body.name);
+        res.json(resObj);
     } catch (err) {
         if (err instanceof quotemaster.quoteError) {
             res.status(400).json({
