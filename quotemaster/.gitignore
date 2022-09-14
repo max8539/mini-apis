@@ -1,0 +1,4 @@
+*
+!.gitignore
+!quotemaster.js
+!quotes-default.json
