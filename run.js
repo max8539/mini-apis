@@ -18,7 +18,9 @@
 
 import express from "express";
 import cors from "cors";
+
 import * as quotemaster from "./quotemaster/quotemaster.js";
+import * as myPlanner from "./myPlanner/myPlanner.js";
 
 const APP = express();
 APP.use(cors());
@@ -26,6 +28,7 @@ APP.use(express.json());
 
 // API initialisation functions (where required)
 quotemaster.init();
+myPlanner.init();
 
 // Handshaking route for frontends to check that API server is online
 APP.all("/handshake", function (req, res) {
