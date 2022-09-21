@@ -16,6 +16,7 @@
 // limitations under the License.
 
 
+import process from "process";
 import express from "express";
 import cors from "cors";
 
@@ -25,6 +26,13 @@ import * as myPlanner from "./myPlanner/myPlanner.js";
 const APP = express();
 APP.use(cors());
 APP.use(express.json());
+
+if (process.env.TOKEN_KEY == undefined) {
+    console.error("ERROR: TOKEN_KEY is not defined.");
+    console.error("See the documentation for more information.");
+    console.error("Stop.");
+    process.exit(1);
+}
 
 // API initialisation functions (where required)
 quotemaster.init();
