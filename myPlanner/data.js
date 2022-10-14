@@ -104,8 +104,7 @@ export class Data {
         return arr;
     }
     /**
-     * Returns all user information for a user, and 
-     * ids for all their events, shared events and tasks.
+     * Returns all user information for a user.
      * @param {number} uid User's ID
      * @returns {object} Object containing all information stored about a user,
      * or null if the user does not exist.
@@ -129,7 +128,7 @@ export class Data {
      * @return {number} New user's ID.
      */
     userAddNew (userData) {
-        if (this.#unameCheckExists(uname)) {throw new UnameExistsError()}
+        if (this.#unameCheckExists(userData.uname)) {throw new UnameExistsError()}
         let newUid = this.#userNewId();
         this.#data.users.push({
             uid: newUid,
@@ -245,7 +244,7 @@ export class Data {
         this.#userCheckExists(uid);
         let arr = [];
         for (eventObj of this.#data.events) {
-            if (uname in eventObj.sharedUsers) {
+            if (uid in eventObj.sharedUsers) {
                 arr.push({
                     eid: eventObj.eid,
                     title: eventObj.title,
@@ -271,7 +270,7 @@ export class Data {
             title: eventData.title,
             time: eventData.time,
             description: eventData.description,
-            owner: uname,
+            owner: uid,
             public: eventData.public,
             sharedUsers: []
         }
@@ -457,7 +456,7 @@ export class Data {
      */
     taskDeleteById (tid) {
         this.#taskCheckExists(tid);
-        this.#data.tasks = this.#data.task.filter(taskObj => taskObj.id != tid);
+        this.#data.tasks = this.#data.task.filter(taskObj => taskObj.tid != tid);
         this.#updateSave();
     }
 }
