@@ -20,28 +20,28 @@ import express from "express";
 import cors from "cors";
 import * as quotemaster from "./quotemaster/quotemaster.js";
 
-const APP = express();
-APP.use(cors());
-APP.use(express.json());
+const SERVER = express();
+SERVER.use(cors());
+SERVER.use(express.json());
 
 // API initialisation functions (where required)
 quotemaster.init();
 
 // Handshaking route for frontends to check that API server is online
-APP.all("/handshake", function (req, res) {
+SERVER.all("/handshake", function (req, res) {
     res.status(200).end();
 })
 
 // quotemaster API interface
-APP.get("/quotemaster/random", function (req, res) {
+SERVER.get("/quotemaster/random", function (req, res) {
     const QUOTE = quotemaster.randomQuote();
     res.json(QUOTE);
 });
-APP.get("/quotemaster/popular", function (req, res) {
+SERVER.get("/quotemaster/popular", function (req, res) {
     const QUOTE = quotemaster.popularQuote();
     res.json(QUOTE);
 });
-APP.get("/quotemaster/id/:id", function (req, res) {
+SERVER.get("/quotemaster/id/:id", function (req, res) {
     try {
         const QUOTE = quotemaster.idQuote(req.params.id);
         res.json(QUOTE);
@@ -55,7 +55,7 @@ APP.get("/quotemaster/id/:id", function (req, res) {
         }
     }
 });
-APP.post("/quotemaster/like", function (req, res) {
+SERVER.post("/quotemaster/like", function (req, res) {
     try {
         quotemaster.likeQuote(req.body.id);
         res.status(200).end();
@@ -69,7 +69,7 @@ APP.post("/quotemaster/like", function (req, res) {
         }
     }
 });
-APP.post("/quotemaster/new", function (req, res) {
+SERVER.post("/quotemaster/new", function (req, res) {
     try {
         let resObj = quotemaster.newQuote(req.body.quote, req.body.name);
         res.json(resObj);
@@ -87,7 +87,7 @@ APP.post("/quotemaster/new", function (req, res) {
         }
     }
 });
-APP.post("/quotemaster/reset", function (req, res) {
+SERVER.post("/quotemaster/reset", function (req, res) {
     try {
         quotemaster.resetQuote(req.body.pass);
         res.status(200).end();
@@ -102,4 +102,4 @@ APP.post("/quotemaster/reset", function (req, res) {
 
 
 
-APP.listen(5678);
+SERVER.listen(5678);
