@@ -19,8 +19,8 @@
 import fs from "fs";
 import crypto from "crypto";
 
-const QUOTES_JSON = "./quotemaster/quotes.json";
-const QUOTES_DEFAULT_JSON = "./quotemaster/quotes-default.json";
+const QUOTES_JSON = "./mini-apis/quotemaster/quotes.json";
+const QUOTES_DEFAULT_JSON = "./mini-apis/quotemaster/quotes-default.json";
 
 const HASHEDPASS = "dX2+ujAOKQmKLSaOE7DXKRcz832YgaJupwXe0Q5Sqnw=";
 
