@@ -102,4 +102,4 @@ SERVER.post("/quotemaster/reset", function (req, res) {
 
 
 
-SERVER.listen(5678);
+SERVER.listen(process.env.PORT, process.env.IP);
