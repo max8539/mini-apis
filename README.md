@@ -2,7 +2,7 @@
 API server for my small web-dev projects!
 
 This API server serves API routes for the following projects:
-- Quotemaster - A simple API for people to share interesting quotes! Used primarily as a tool for learning frontend JavaScript frameworks - see [quotemaster-vue](https://github.com/max8539/quotemaster-vue) and quotemaster-react (coming soon).
+- Quotemaster - A simple API for people to share interesting quotes! Used primarily as a tool for learning frontend JavaScript frameworks - see [quotemaster](https://github.com/max8539/quotemaster).
 
 ---
 
